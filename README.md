@@ -1,6 +1,6 @@
-# go-tester
+# tester
 
-`go-tester` is a Go package designed for generating consistent, human-readable test case names. It provides a function to convert various data types, including complex nested structures, into a string representation that can be used as a test case name.
+`tester` is a Go package designed for generating consistent, human-readable test case names. It provides a function to convert various data types, including complex nested structures, into a string representation that can be used as a test case name.
 
 ## Features
 
@@ -13,7 +13,7 @@
 You can install the package using `go get`:
 
 ```bash
-go get github.com/jmnote/go-tester
+go get github.com/jmnote/tester
 ```
 
 ## Usage
@@ -21,10 +21,10 @@ go get github.com/jmnote/go-tester
 To use the `Name` function in your tests, you can create a test function like the following:
 
 ```go
-import "github.com/jmnote/go-tester/testcase"
+import "github.com/jmnote/tester"
 ...
 	for i, tc := range testCases {
-		t.Run(testcase.Name(i, tc.input), func(t *testing.T) {
+		t.Run(tester.Name(i, tc.input), func(t *testing.T) {
 			...
 	}
 ```
