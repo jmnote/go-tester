@@ -7,7 +7,7 @@
 - **Consistent Naming:** Converts input objects into a string format, ensuring consistency and readability.
 - **Supports Multiple Types:** Handles different types of inputs including integers, slices, arrays, maps, and structs.
 - **String Formatting:** Removes unnecessary whitespaces, replaces slashes with `%`, and truncates names that are too long.
-- **Customizable Output:** Automatically trims and formats strings to maintain readability.
+- **Automatic String Formatting:** Automatically removes unnecessary whitespaces, replaces slashes with `%`, and truncates names that are too long to maintain readability.
 
 ## Installation
 
