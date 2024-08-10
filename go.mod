@@ -1,4 +1,4 @@
-module github.com/jmnote/go-tester
+module github.com/jmnote/tester
 
 go 1.22.5
 
