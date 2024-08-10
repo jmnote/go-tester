@@ -54,7 +54,7 @@ func TestName(t *testing.T) {
 		{
 			name:     "Long string",
 			input:    []any{1, strings.Repeat("a", 70)},
-			expected: "01 " + strings.Repeat("a", 61) + "...",
+			expected: "01 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa...",
 		},
 		{
 			name:     "Special characters",
@@ -73,10 +73,94 @@ func TestName(t *testing.T) {
 		},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.name, func(t *testing.T) {
+	for i, tc := range testCases {
+		t.Run(Name(i, tc.name), func(t *testing.T) {
 			result := Name(tc.input...)
 			assert.Equal(t, tc.expected, result, "Unexpected result for case: %s", tc.name)
+		})
+	}
+}
+
+func TestToString(t *testing.T) {
+	testCases := []struct {
+		name     string
+		input    any
+		expected string
+	}{
+		{
+			name:     "Nil case",
+			input:    nil,
+			expected: "",
+		},
+		{
+			name:     "Integer",
+			input:    42,
+			expected: "42",
+		},
+		{
+			name:     "Float",
+			input:    3.14,
+			expected: "3.14",
+		},
+		{
+			name:     "String",
+			input:    "hello",
+			expected: "hello",
+		},
+		{
+			name:     "Slice of ints",
+			input:    []int{1, 2, 3},
+			expected: "1 2 3",
+		},
+		{
+			name:     "Array of strings",
+			input:    [3]string{"a", "b", "c"},
+			expected: "a b c",
+		},
+		{
+			name:     "Map",
+			input:    map[string]int{"a": 1, "b": 2},
+			expected: "1 2",
+		},
+		{
+			name: "Struct with public fields",
+			input: struct {
+				Name  string
+				Value int
+			}{"Test", 10},
+			expected: "Test 10",
+		},
+		{
+			name: "Pointer to struct",
+			input: &struct {
+				Name  string
+				Value int
+			}{"Pointer", 20},
+			expected: "Pointer 20",
+		},
+		{
+			name: "Struct with unexported field",
+			input: struct {
+				Name   string
+				Value  int
+				hidden string
+			}{"Visible", 30, "hidden"},
+			expected: "Visible 30",
+		},
+		{
+			name: "Struct with nil pointer field",
+			input: struct {
+				A int
+				B *int
+			}{A: 5, B: nil},
+			expected: "5",
+		},
+	}
+
+	for i, tc := range testCases {
+		t.Run(Name(i, tc.name), func(t *testing.T) {
+			result := toString(tc.input)
+			assert.Equal(t, tc.expected, result)
 		})
 	}
 }

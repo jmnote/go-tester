@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"reflect"
 	"regexp"
+	"sort"
 	"strings"
 )
 
@@ -30,11 +31,17 @@ func Name(obj ...any) string {
 func toString(obj any) string {
 	v := reflect.ValueOf(obj)
 	var sb strings.Builder
+	if v.Kind() == reflect.Ptr {
+		v = v.Elem()
+	}
 	switch v.Kind() {
-	case reflect.Ptr:
-		sb.WriteString(toString(v.Elem()))
 	case reflect.Map:
-		for _, key := range v.MapKeys() {
+		// Sort the map keys to ensure consistent order
+		keys := v.MapKeys()
+		sort.Slice(keys, func(i, j int) bool {
+			return fmt.Sprintf("%v", keys[i]) < fmt.Sprintf("%v", keys[j])
+		})
+		for _, key := range keys {
 			value := v.MapIndex(key)
 			sb.WriteString(fmt.Sprintf("%v ", toString(value.Interface())))
 		}
