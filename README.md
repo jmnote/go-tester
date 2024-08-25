@@ -21,10 +21,10 @@ go get github.com/jmnote/tester
 To use the `Name` function in your tests, you can create a test function like the following:
 
 ```go
-import "github.com/jmnote/tester"
+import "github.com/jmnote/tester/testcase"
 ...
 	for i, tc := range testCases {
-		t.Run(tester.Name(i, tc.input), func(t *testing.T) {
+		t.Run(testcase.Name(i, tc.input), func(t *testing.T) {
 			...
 	}
 ```
