@@ -1,6 +1,6 @@
 # tester
 
-[![pull-request](https://github.com/jmnote/tester/actions/workflows/pull-request.yml/badge.svg)](https://github.com/kuoss/myip/actions/workflows/pull-request.yml)
+[![pull-request](https://github.com/jmnote/tester/actions/workflows/pull-request.yml/badge.svg)](https://github.com/jmnote/tester/actions/workflows/pull-request.yml)
 [![Coverage Status](https://coveralls.io/repos/github/jmnote/tester/badge.svg?branch=main)](https://coveralls.io/github/jmnote/tester?branch=main)
 [![GitHub license](https://img.shields.io/github/license/jmnote/tester.svg)](https://github.com/jmnote/tester/blob/main/LICENSE)
 [![Go Report Card](https://goreportcard.com/badge/github.com/jmnote/tester)](https://goreportcard.com/report/github.com/jmnote/tester)
